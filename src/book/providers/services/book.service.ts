@@ -40,6 +40,7 @@ export class BookService {
       const createdBook = await this.repository.create(createBookDto);
       return createdBook;
     } catch (error) {
+      console.log(error);
       throw new HttpException('Erro inesperado', HttpStatus.BAD_REQUEST);
     }
   }

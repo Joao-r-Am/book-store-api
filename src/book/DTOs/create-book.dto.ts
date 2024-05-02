@@ -1,10 +1,15 @@
+import { File } from 'buffer';
 import {
   IsNotEmpty,
   IsString,
   IsNumber,
   IsDateString,
   IsArray,
+  IsUrl,
+  IsBoolean,
+  IsOptional,
 } from 'class-validator';
+import { IsFile } from 'src/validator/IsFile';
 
 export class CreateBookDto {
   @IsNotEmpty()
@@ -30,4 +35,32 @@ export class CreateBookDto {
   @IsNotEmpty()
   @IsDateString()
   release_date: Date;
+
+  @IsNotEmpty()
+  @IsNumber()
+  quantity: number;
+
+  @IsNotEmpty()
+  @IsString()
+  codeISBN13: string;
+
+  @IsNotEmpty()
+  @IsString()
+  codeISBN10: string;
+
+  @IsNotEmpty()
+  @IsString()
+  synopsis: string;
+
+  // @IsOptional()
+  // @IsFile({ mime: ['image/jpg', 'image/png', 'image/jpeg'] })
+  // coverFile?: File | null;
+
+  @IsUrl()
+  @IsOptional()
+  coverLink?: string | null;
+
+  @IsNotEmpty()
+  @IsBoolean()
+  disponiblity: boolean;
 }

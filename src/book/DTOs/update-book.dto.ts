@@ -4,8 +4,11 @@ import {
   IsString,
   IsNumber,
   IsDateString,
+  IsBoolean,
+  IsUrl,
 } from 'class-validator';
-
+import { IsFile } from '../../validator/IsFile';
+import { File } from 'buffer';
 export class UpdateBookDto {
   @IsNotEmpty()
   @IsString()
@@ -30,4 +33,30 @@ export class UpdateBookDto {
   @IsNotEmpty()
   @IsDateString()
   release_date: Date;
+
+  @IsNotEmpty()
+  @IsNumber()
+  quantity: number;
+
+  @IsNotEmpty()
+  @IsString()
+  codeISBN13: string;
+
+  @IsNotEmpty()
+  @IsString()
+  codeISBN10: string;
+
+  @IsNotEmpty()
+  @IsString()
+  synopsis: string;
+
+  // @IsFile({ mime: ['image/jpg', 'image/png', 'image/jpeg'] })
+  // coverFile?: File | null;
+
+  @IsUrl()
+  coverLink?: string | null;
+
+  @IsNotEmpty()
+  @IsBoolean()
+  disponiblity: boolean;
 }

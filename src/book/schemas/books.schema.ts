@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { File } from 'buffer';
 import { HydratedDocument } from 'mongoose';
 
 export type BookDocument = HydratedDocument<Book>;
@@ -14,7 +15,7 @@ export class Book {
     type: Array<String>,
     required: true,
   })
-  genre: string[];
+  genres: string[];
   @Prop({
     type: String,
     required: true,
@@ -35,6 +36,41 @@ export class Book {
     required: true,
   })
   release_date: Date;
+  @Prop({
+    type: Number,
+    required: true,
+  })
+  quantity: number;
+  @Prop({
+    type: String,
+    required: true,
+  })
+  codeISBN13: string;
+  @Prop({
+    type: String,
+    required: true,
+  })
+  codeISBN10: string;
+  @Prop({
+    type: String,
+    required: true,
+  })
+  synopsis: string;
+  // @Prop({
+  //   type: File,
+  //   required: false,
+  // })
+  // coverFile?: File | null;
+  @Prop({
+    type: String,
+    required: false,
+  })
+  coverLink?: string | null;
+  @Prop({
+    type: Boolean,
+    required: true,
+  })
+  disponiblity: boolean;
 }
 
 export const BookSchema = SchemaFactory.createForClass(Book);
