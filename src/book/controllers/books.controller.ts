@@ -12,10 +12,12 @@ import {
   HttpStatus,
   Res,
   HttpException,
+  UseGuards,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { isEmpty } from 'lodash';
 import { ObjectId, isValidObjectId } from 'mongoose';
+import { AuthGuard } from 'src/auth/auth.guard';
 import { CreateBookDto } from 'src/book/DTOs/create-book.dto';
 import { UpdateBookDto } from 'src/book/DTOs/update-book.dto';
 import { Book } from 'src/book/interfaces/book';
@@ -29,6 +31,7 @@ export class BooksController {
     private repository: BookRepositorie,
   ) {}
 
+  @UseGuards(AuthGuard)
   @Get()
   async findAll(): Promise<Book[]> {
     return this.service.findAll();
